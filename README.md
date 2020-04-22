@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# UI개발자를 위한 리액트 기초 교육
 
-## Available Scripts
+## 배경지식 관련 링크
 
-In the project directory, you can run:
+node와 npm에 대한 내용
 
-### `yarn start`
+[프론트엔드 개발환경의 이해: NPM](http://jeonghwan-kim.github.io/series/2019/12/09/frontend-dev-env-npm.html)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+es6 스타일가이드 (한 번 훑어보면 됨)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[airbnb/javascript](https://github.com/airbnb/javascript)
 
-### `yarn test`
+## 1일차 교육 내용
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Node 12+, git, webstorm 등 개발도구 준비
+2. npm 설명 및 노드패키지 설명
+3. create-react-app (react 보일러플레이트) 설치 및 first-app 프로젝트 생성
+4. 컴포넌트 형태 설명 (클래스형, 함수형)
+5. props를 통해 컴포넌트에 사용자 정의 속성값 전달 (Display 컴포넌트)
+6. App.js에 있는 input의 입력값을 state로 다뤄 Display 컴포넌트에 props로 전달
+7. state로 인라인스타일 다루는 방법
+8. state로 클래스명을 다루는 방법(`` ← es6 템플릿 문자열 리터럴 사용)
+9. 디렉터리 구조에대한 고민과 Atomic Design
 
-### `yarn build`
+## 교육에서 설명했던 es6 문법
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. let과 const
+2. Destructural Syntax (비구조화 할당, 객체나 배열을 비구조화 할 수 있다)
+3. Template String Literal ( `일반문자 ${변수 또는 표현식}` )
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Q & A
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. ReactDom.render는 뭐에요?
+ → public/index.html에 src/index.js가 inject 되면서 ReactDom.render() 함수가 실행되고, 이를 통해 컴포넌트의 시작인 App 컴포넌트가 <div id="root" /> 엘리먼트에 마운트 된다.
 
-### `yarn eject`
+2. Node가 뭐에요?
+ → 서버사이드 자바스크립트... 근데 설명이 부족했다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 교육에서 소개한 웹스톰 기능 및 단축키
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Note: 웹스톰 또는 vs code 에디터에서 package.json이 위치한 폴더를 열면 그게 곧 노드 프로젝트의 루트이다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 에디터 소스코드 편집 관련 단축키
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`Ctrl + D` 또는 `Cmd + D` 
 
-## Learn More
+ → 소스 코드 한 줄 복제
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`Ctrl + Y` 또는 `Cmd + ←`(backspace)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ → 한 줄 삭제
 
-### Code Splitting
+에디터에서 `rsc` 입력 후 `tab` 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+ → 함수형 컴포넌트 스니펫 생성
 
-### Analyzing the Bundle Size
+에디터에서 `rcc` 입력 후 `tab`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+ → 클래스형 컴포넌트 스니펫 생성
 
-### Making a Progressive Web App
+### 툴 윈도우 관련 단축키
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+`Alt + 1`
 
-### Advanced Configuration
+ → 프로젝트 디렉터리
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+`Alt + 9`
 
-### Deployment
+ → git 로그 툴 윈도우
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+`Alt + 0`
 
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ → pakcage.json에 정의 된 scripts를 볼 수 있는 npm 툴 윈도우
