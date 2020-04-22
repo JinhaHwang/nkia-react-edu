@@ -1,39 +1,27 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Display from "./components/Display";
+import React from 'react'
+import { Link, Router } from '@reach/router'
+import './App.css'
+import Home from './components/pages/Home'
+import Dashboard from './components/pages/Dashboard'
 
+// react-router-dom
+// https://reacttraining.com/react-router/
+
+// todo : 새로운 @reach/router
+// https://reach.tech/router
 function App() {
-  const [text, setText] = useState('')
-  const [colorClass, setColorClass] = useState('bg-blue')
-
-  const handleChange = e => {
-    const { value } = e.target
-    setText(value)
-  }
-
-  const handleClickBlue = e => {
-    setColorClass('bg-blue')
-  }
-  const handleClickRed = e => {
-    setColorClass('bg-red')
-  }
-
-  const handleColorToggle = e => {
-    if (colorClass === 'bg-red') {
-      setColorClass('bg-blue')
-    } else {
-      setColorClass('bg-red')
-    }
-  }
-
-  return (
-    <div className={`App ${colorClass}`}>
-      <input type="text" onChange={handleChange} />
-      <Display msg={text} />
-      <button onClick={handleColorToggle}>배경색 변경</button>
-    </div>
-  );
+    return (
+        <div className={`App`}>
+            <nav>
+                <Link to="/">Home</Link>
+                <Link to="/dashboard">Dashboard</Link>
+                <Router>
+                    <Home path="/" />
+                    <Dashboard path="/dashboard" />
+                </Router>
+            </nav>
+        </div>
+    )
 }
 
-export default App;
+export default App
