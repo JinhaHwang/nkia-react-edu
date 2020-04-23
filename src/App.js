@@ -13,6 +13,7 @@ function App() {
   }
 
   const handleClickBlue = e => {
+
     setColorClass('bg-blue')
   }
   const handleClickRed = e => {
@@ -28,12 +29,17 @@ function App() {
   }
 
   return (
+
     <div className={`App ${colorClass}`}>
       <input type="text" onChange={handleChange} />
       <Display msg={text} />
-      <button onClick={handleColorToggle}>배경색 변경</button>
+
+      <button onClick={handleColorToggle}
+      >배경색 변경</button>
     </div>
-  );
+  )
+
+      ;
 }
 
 export default App;
