@@ -45,6 +45,12 @@
       "last 1 safari version"
     ]
   },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  },
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
