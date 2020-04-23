@@ -1,45 +1,40 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Display from "./components/Display";
+import React, { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import Display from './components/Display'
 
 function App() {
-  const [text, setText] = useState('')
-  const [colorClass, setColorClass] = useState('bg-blue')
+    const [text, setText] = useState('')
+    const [colorClass, setColorClass] = useState('bg-blue')
 
-  const handleChange = e => {
-    const { value } = e.target
-    setText(value)
-  }
-
-  const handleClickBlue = e => {
-
-    setColorClass('bg-blue')
-  }
-  const handleClickRed = e => {
-    setColorClass('bg-red')
-  }
-
-  const handleColorToggle = e => {
-    if (colorClass === 'bg-red') {
-      setColorClass('bg-blue')
-    } else {
-      setColorClass('bg-red')
+    const handleChange = (e) => {
+        const { value } = e.target
+        setText(value)
     }
-  }
 
-  return (
+    const handleClickBlue = (e) => {
+        setColorClass('bg-blue')
+    }
+    const handleClickRed = (e) => {
+        setColorClass('bg-red')
+    }
 
-    <div className={`App ${colorClass}`}>
-      <input type="text" onChange={handleChange} />
-      <Display msg={text} />
+    const handleColorToggle = (e) => {
+        if (colorClass === 'bg-red') {
+            setColorClass('bg-blue')
+        } else {
+            setColorClass('bg-red')
+        }
+    }
 
-      <button onClick={handleColorToggle}
-      >배경색 변경</button>
-    </div>
-  )
+    return (
+        <div className={`App ${colorClass}`}>
+            <input type="text" onChange={handleChange} />
+            <Display msg={text} />
 
-      ;
+            <button onClick={handleColorToggle}>배경색 변경</button>
+        </div>
+    )
 }
 
-export default App;
+export default App
