@@ -1,75 +1,76 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import Display from './components/Display'
-import { Button, DatePicker } from 'antd'
-import YearPicker from './components/common/YearPicker'
-import MonthPicker from './components/common/MonthPicker'
+import React, { useEffect, useState } from 'react'
+import { Link, Router } from '@reach/router'
+import { Button, Layout } from 'antd'
 
-const DayPicker = (props) => {
-    return <DatePicker onChange={props.onChange} picker={props.picker} />
-}
+import './App.css'
+import TodoList from './components/pages/TodoList'
+import APage from './components/pages/APage'
+
+const { Sider, Content } = Layout
 
 function App() {
-    const [text, setText] = useState('')
-    const [isVisible, setIsVisible] = useState(false)
-    const [colorClass, setColorClass] = useState('bg-blue')
+    const [items, setItems] = useState(null)
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem('items'))
+        setItems(data)
 
-    const handleChange = (e) => {
-        const { value } = e.target
-        setText(value)
-    }
-
-    const handleClickBlue = (e) => {
-        setColorClass('bg-blue')
-    }
-    const handleClickRed = (e) => {
-        setColorClass('bg-red')
-    }
-
-    const handleColorToggle = (e) => {
-        if (colorClass === 'bg-red') {
-            setColorClass('bg-blue')
-        } else {
-            setColorClass('bg-red')
+        return () => {
+            localStorage.setItem('items', JSON.stringify(items))
         }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(items))
+    }, [items])
+
+    const saveItems = (newItems) => {
+        setItems(newItems)
     }
 
-    function onChange(date, dateString) {
-        console.log(date, dateString)
-    }
-
-    const getDatePickerBy = (visible) => {
-        if (visible) {
-            return (
-                <>
-                    <YearPicker onChange={onChange} />
-                    <MonthPicker onChange={onChange} />
-                </>
-            )
-        }
-        return null
+    const handleRemoveAll = () => {
+        setItems(null)
     }
 
     return (
-        <div className={`App ${colorClass}`}>
-            <DayPicker picker="year" />
-            <input type="text" onChange={handleChange} />
-            <Display msg={text} />
-
-            <Button type="dashed" onClick={handleColorToggle}>
-                배경색 변경
-            </Button>
-            <Button
-                type="dashed"
-                onClick={(e) => {
-                    setIsVisible(true)
-                }}
-            >
-                나와라 데이트피커
-            </Button>
-            {/*{getDatePickerBy(isVisible)}*/}
-        </div>
+        <Layout
+            style={{
+                height: '100vh',
+            }}
+        >
+            <Sider>
+                <Link
+                    to="/todos/today"
+                    style={{
+                        display: 'block',
+                        color: 'white',
+                    }}
+                >
+                    오늘 할 일
+                </Link>
+                <Link
+                    to="/todos/shop"
+                    style={{
+                        display: 'block',
+                        color: 'white',
+                    }}
+                >
+                    장 볼 것
+                </Link>
+                <Button onClick={handleRemoveAll}>X</Button>
+            </Sider>
+            <Layout>
+                <Content>
+                    <Router>
+                        <TodoList path="/" />
+                        <TodoList
+                            path="/todos/:id"
+                            items={items}
+                            setItems={saveItems}
+                        />
+                    </Router>
+                </Content>
+            </Layout>
+        </Layout>
     )
 }
 
